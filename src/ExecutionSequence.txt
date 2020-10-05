@@ -1,0 +1,71 @@
+C:\Users\chris.pham\Documents\GitHub\neural-networks-and-deep-learning\src>python
+Python 3.8.6 (tags/v3.8.6:db45529, Sep 23 2020, 15:37:30) [MSC v.1927 32 bit (Intel)] on win32
+Type "help", "copyright", "credits" or "license" for more information.
+>>> import mnist_loader
+>>> training_data, validation_data, test_data = mnist_loader.load_data_wrapper()
+>>> import network
+>>> net = network.Network([784, 30, 10])
+>>> net.SGD(training_data, 30, 10, 3.0, test_data=test_data)
+Epoch 0: 9064 / 10000
+Epoch 1: 9228 / 10000
+Epoch 2: 9349 / 10000
+Epoch 3: 9354 / 10000
+Epoch 4: 9415 / 10000
+Epoch 5: 9450 / 10000
+Epoch 6: 9467 / 10000
+Epoch 7: 9492 / 10000
+Epoch 8: 9460 / 10000
+Epoch 9: 9491 / 10000
+Epoch 10: 9513 / 10000
+Epoch 11: 9505 / 10000
+Epoch 12: 9485 / 10000
+Epoch 13: 9535 / 10000
+Epoch 14: 9528 / 10000
+Epoch 15: 9526 / 10000
+Epoch 16: 9545 / 10000
+Epoch 17: 9537 / 10000
+Epoch 18: 9535 / 10000
+Epoch 19: 9504 / 10000
+Epoch 20: 9529 / 10000
+Epoch 21: 9546 / 10000
+Epoch 22: 9539 / 10000
+Epoch 23: 9544 / 10000
+Epoch 24: 9536 / 10000
+Epoch 25: 9549 / 10000
+Epoch 26: 9555 / 10000
+Epoch 27: 9559 / 10000
+Epoch 28: 9528 / 10000
+Epoch 29: 9507 / 10000
+>>> import numpy as np
+>>> imgnr = np.random.randint(0,10000)
+>>> prediction = net.feedforward( test_data[imgnr][0] )
+>>> print("Image number {0} is a {1}, and the network predicted a {2}".format(imgnr, test_data[imgnr][1], np.argmax(prediction)))
+Image number 8300 is a 8, and the network predicted a 8
+>>> import matplotlib.pyplot as plt
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+ModuleNotFoundError: No module named 'matplotlib'
+>>> import matplotlib.pyplot as plt
+>>> fig, ax = plt.subplots(1,2,figsize=(8,4))
+>>> ax[0].matshow( np.reshape(test_data[imgnr][0], (28,28) ), cmap='gray' )
+<matplotlib.image.AxesImage object at 0x16BF4310>
+>>> ax[1].plot( prediction, lw=3 )
+[<matplotlib.lines.Line2D object at 0x16BF4A78>]
+>>> ax[1].set_aspect(9)
+>>> plt.show()
+>>>
+>>>
+>>>
+>>> imgnr = 4
+>>> prediction = net.feedforward( test_data[imgnr][0] )
+>>> print("Image number {0} is a {1}, and the network predicted a {2}".format(imgnr, test_data[imgnr][1], np.argmax(prediction)))
+Image number 4 is a 4, and the network predicted a 4
+>>> plt.show()
+>>> fig, ax = plt.subplots(1,2,figsize=(8,4))
+>>> ax[0].matshow( np.reshape(test_data[imgnr][0], (28,28) ), cmap='gray' )
+<matplotlib.image.AxesImage object at 0x16AEA868>
+>>> ax[1].plot( prediction, lw=3 )
+[<matplotlib.lines.Line2D object at 0x16B0D3E8>]
+>>> ax[1].set_aspect(9)
+>>> plt.show()
+>>> print(test_data[4][0])
